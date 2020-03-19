@@ -1,0 +1,185 @@
+@import 'normalize';
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+$background-color: #f4f4f0;
+$border-color: #cccccc;
+$link-color: #a4a4a0;
+$border-style: 2px solid $border-color;
+
+$sans-serif-font: Verdana, Geneva, Tahoma, sans-serif; 
+$serif-font: Georgia, "Times New Roman", Times, serif;
+
+$margin-size: 20px;
+$column-size: 100% / 12;
+@mixin column-width($column) {
+    width: calc(#{$column} * #{$column-size} - 2 * #{$margin-size})
+}
+
+@mixin generate-columns($number, $prefix) {
+    @for $i from 1 to $number + 1 {
+        .col-#{$prefix}-#{$i} {
+            @include column-width($i);
+        }
+    }
+}
+
+@mixin menu-button() {
+    height: 3em;
+    width: 3em;
+    padding: 0.2em;
+    background-color: $background-color;
+    border: $border-style;
+    border-radius: 0.8em;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+// Used fot sticky footer
+body, html {
+    height: 100%;
+}
+
+body {
+    font: 16px $sans-serif-font;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2 {
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 200%;
+    margin: 0px;
+}
+
+h2 {
+    font-size: 150%;
+}
+
+header {
+    font-family: $serif-font;
+    display: flex;
+    align-items: center;
+    margin: $margin-size 2 * $margin-size 0px;
+    nav {
+        display: flex;
+        justify-content: flex-end;
+        flex: 1;
+        ul {
+            display: flex;
+            list-style: none;
+            text-align: center;
+            li {
+                width: 100px;
+            }
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        a:hover, a:focus {
+            color: $link-color;
+        }
+    }
+}
+
+.logo {
+    font: 2.5em 'Dancing Script', cursive;
+    margin-right: 20px;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    margin: $margin-size;
+}
+
+article {
+    background-color: $background-color;
+    border: $border-style;
+    margin: $margin-size $margin-size;
+    display: flex;
+    flex-direction: column;
+    h2 {
+        border-left: $border-style;
+        border-bottom: $border-style;
+        text-align: center;
+        width: 200px;
+        max-width: 100%;
+        padding: 15px;
+        margin: 0px;
+        align-self: flex-end;
+    }
+    p {
+        text-align: justify;
+        margin: 20px;
+    }
+}
+
+#lorem h2 {
+    background-color:lightskyblue;
+}
+
+#ipsum h2 {
+    background-color: lightcoral;
+} 
+    
+#dolor h2 { 
+    background-color: lightgreen;
+}
+
+@media only screen and (max-width: 599.98px) {
+    header {
+        nav ul {
+            display: none;
+        }
+        h1 {
+            display: none;
+        }
+        nav img {
+            @include menu-button();
+        }
+    }
+    
+    @include generate-columns(12, 'sm')
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1023.98px) {
+    header { 
+        nav ul {
+            display: none;
+        }
+        nav img {
+            @include menu-button();
+        }
+    }
+
+    @include generate-columns(12, 'md')
+}
+
+@media only screen and (min-width: 1024px) {
+    header nav img {
+        display: none;
+    }
+
+    @include generate-columns(12, 'lg')
+}
+
+footer {
+    background-color: $background-color;
+    border-top: $border-style;
+    padding: 50px;
+    margin-top: auto;
+    p {
+        text-align: center;
+        margin: 0px;
+    }
+    .author {
+        display: block;
+        font-weight: bold;
+    }
+}
