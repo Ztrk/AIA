@@ -1,0 +1,51 @@
+body {
+    margin: 20px;
+}
+
+table {
+    table-layout: fixed;
+    width: 1000px;
+    border: 2px solid;
+    border-collapse: collapse;
+}
+
+@media (max-width: 1040px) {
+    table {
+        width: 100%;
+    }
+}
+
+thead {
+    background-color: #aaaaaa;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #d3d3d3;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr td:last-child {
+    text-align: center;
+}
+
+td, th {
+    border: 2px solid;
+    padding: 10px;
+    overflow: hidden;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+table button {
+    margin: 0px 10px;
+}
+
+.add-collection {
+    margin: 20px 0px;
+}
