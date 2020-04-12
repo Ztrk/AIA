@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>jQuery</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      // 16
+      function sendRequest(url) {
+        return new Promise((resolve, reject) => {
+          const request = new XMLHttpRequest();
+          request.open("GET", url);
+          request.addEventListener('load', () => {
+            if (request.status === 200) {
+              resolve(request.response);
+            }
+            else {
+              reject(`${request.status} ${request.statusText}`);
+            }
+          });
+          request.addEventListener('error', (error) => {
+            let statusText = request.statusText;
+            if (statusText === '') {
+              statusText = 'Error ocurred while requesting a resource at ' + url;
+            }
+            reject(`${request.status} ${statusText}`);
+          });
+          request.send();
+        });
+      }
+
+      $(function() {
+        const url = 'https://developer.mozilla.org/en-US/docs/Learn/JavaScript';
+        $('button').click(() => {
+          sendRequest(url)
+          .then(response => { 
+            console.log('Success');
+            $('.content').html(response);
+            $('.content').html($('.title, #wikiArticle'))
+          })
+          .catch(reason => { 
+            console.error('Failure'); 
+            console.error(reason); 
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>Load article from MDN about JavaScript</p>
+    <button>Load article</button>
+    <div class="content">
+
+    </div>
+  </body>
+</html>
