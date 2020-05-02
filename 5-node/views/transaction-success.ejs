@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <%- include('head'); %>
+  <body>
+    <%- include('header') %>
+    <main class="container alert alert-success" role="alert">
+      <h2>You bought</h2>
+      <% if (cart && cart.length > 0) { %>
+        <ul>
+        <% cart.forEach(game => { %>
+          <li><%=game.name%></li>
+        <% }); %>
+        </ul>
+      <% } %>
+      <p>Thank you for your purchase</p>
+    </main>
+  </body>
+</html>
