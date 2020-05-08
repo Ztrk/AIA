@@ -1,0 +1,24 @@
+﻿@{ 
+    var name = "Robert Paulson";
+    if (!string.IsNullOrEmpty(Request["name"]))
+    {
+        name = Request["name"];
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Name</title>
+</head>
+<body>
+    <h1>Name</h1>
+    <ul>
+        @for (int i = 0; i < 10; ++i)
+        {
+            <li>His name is @name</li>
+        }
+    </ul>
+</body>
+</html>

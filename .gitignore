@@ -1,1 +1,8 @@
 1-responsive-design/style.css
+
+bin/
+obj/
+packages/
+node_modules/
+.user
+

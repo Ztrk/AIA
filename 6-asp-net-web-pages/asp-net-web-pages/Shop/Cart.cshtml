@@ -1,0 +1,48 @@
+﻿@{
+    Page.Title = "Your cart";
+    var cart = (HashSet<string>)Session["cart"];
+
+    if (IsPost)
+    {
+        if (Request["checkout"] != null)
+        {
+            var products = (HashSet<string>)Session["products"];
+            products.ExceptWith(cart);
+            cart.Clear();
+        }
+        else
+        {
+            cart.Remove(Request["game"]);
+        }
+        Response.Redirect("Cart.cshtml");
+    }
+}
+
+@if (cart.Count > 0)
+{
+    <ul class="product-container">
+        @foreach (var product in cart)
+        {
+            <li class="product">
+                @product
+                <form method="POST">
+                    <button type="submit" name="game" value="@product">Remove</button>
+                </form>
+            </li>
+        }
+    </ul>
+    <form method="POST" class="checkout-container">
+        <button 
+            type="submit"
+            name="checkout"
+            value="checkout"
+            class="checkout-button">
+                Checkout
+        </button>
+    </form>
+}
+else
+{
+    <p>Your cart is empty</p>
+}
+

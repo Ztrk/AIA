@@ -1,0 +1,30 @@
+﻿@{
+    Page.Title = "Products";
+    var products = (HashSet<string>)Session["products"];
+
+    if (IsPost)
+    {
+        var cart = (HashSet<string>)Session["cart"];
+        cart.Add(Request["game"]);
+        Response.Redirect("Products.cshtml");
+    }
+}
+
+@if (products.Count > 0)
+{
+    <ul class="product-container">
+        @foreach (var product in products)
+        {
+            <li class="product">
+                @product
+                <form method="POST">
+                    <button type="submit" name="game" value="@product">Add to cart</button>
+                </form>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>All products were bought.</p>
+}

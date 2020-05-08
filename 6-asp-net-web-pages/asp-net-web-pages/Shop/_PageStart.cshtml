@@ -1,0 +1,29 @@
+﻿@{ 
+    Layout = "_Layout.cshtml";
+    if (Session["cart"] == null)
+    {
+        Session["cart"] = new HashSet<string>();
+    }
+    if (Session["products"] == null)
+    {
+        Session["products"] = new HashSet<string>
+        {
+            "The Witcher 3: Wild Hunt",
+            "Kingdom Come: Deliverance",
+            "The Elder Scrools V: Skyrim",
+            "The Elder Scrools IV: Oblivion",
+            "The Elder Scrools III: Morrowind",
+            "Sid Meier's Civilization VI",
+            "Sid Meier's Civilization V",
+            "Grand Theft Auto V",
+            "Cyberpunk 2077",
+            "Europa Universalis IV",
+            "Age of Empires II",
+            "Kerbal Space Program",
+            "Portal 2",
+            "Dark Souls",
+            "Red Dead Redemption 2",
+            "FIFA 20"
+        };
+    }
+}
