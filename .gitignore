@@ -6,3 +6,5 @@ packages/
 node_modules/
 .user
 
+.vscode/
+
